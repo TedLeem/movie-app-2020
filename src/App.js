@@ -23,22 +23,28 @@ Movie.prototype= {
   year: PropTypes.number
 }
 
-function App() {
-  return (
-    <div>
-      <h1>
-        hello this is a Movie list
-      </h1>
-      <ul>  
-        {movieList.map(params => <Movie 
-        id = {params.key}
-        name={params.name} 
-        year={params.year} 
-        
-        />)}
-      </ul>
-    </div>
-  );
+class App extends React.Component{
+  
+  state= {
+    count : 0 
+  };
+  add = () => {
+    
+    this.setState( current => ({count: current.count + 1}) );
+    // setstate 함수를 호출할때마다 react는 새로운 react와 함께 render함수를 호출 할 것이다.
+  };
+  minus = () => {
+    this.setState( current => ({count: current.count - 1}) )
+  };
+  
+  render() {
+    return (
+      <div> 
+        <h1> number is {this.state.count} </h1>
+        <button onClick ={this.add}> add </button>
+        <button onClick = {this.minus}>minus</button>
+      </div>      
+    );
+  }
 }
-
 export default App;
